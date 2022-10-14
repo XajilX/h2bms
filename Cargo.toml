@@ -1,0 +1,9 @@
+[package]
+name = "h2bms"
+version = "0.1.0"
+edition = "2021"
+authors = ["Abnormal"]
+description = "h2bms - How To Be Mai-Star, simai-format random scatter generator"
+
+[dependencies]
+clap = { version = "~4.0.15", features = ["derive"] }
