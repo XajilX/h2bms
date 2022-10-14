@@ -1,5 +1,5 @@
 use clap::Parser;
-use rand::
+use rand::{thread_rng, Rng};
 
 #[derive(Parser)]
 #[command(author, version, about)]
@@ -32,4 +32,18 @@ fn main() {
         vec![ 3,  4,  5,  6],
     ];
     let args = Args::parse();
+
+    let mut rng = thread_rng();
+    let mut pos = match args.start {
+        None => rng.gen_range(0..=15),
+        Some(x) => match x.as_str() {
+            "left" | "l" => rng.gen_range(0..=7),
+            "right" | "r" => rng.gen_range(8..=15),
+            _ => panic!("Param Error")
+        }
+    };
+    for _ in 0..args.len {
+        print!("{},", pos%8+1);
+        pos = trans[pos][rng.gen_range(0..trans[pos].len())]
+    }
 }
